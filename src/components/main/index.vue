@@ -31,10 +31,28 @@
       style="margin-left: 20%; word-wrap: break-word"
     >
       <div>
-        <!-- <h4>关于我：</h4>
-        Java全栈开发方向，参与多个政府项目的开发工作。积极学习，积累博客，积累项目经验。 -->
+        <h3>更新计划:</h3>
+        <div v-for="(item, index) in projectUpdate" :key="item.index">
+          <H4
+            >{{ index + 1 }},<el-button type="success" link>{{
+              item.title
+            }}</el-button>
+            {{ item.text }}
+          </H4>
+        </div>
       </div>
       <div>
+        <h3>必看专栏:</h3>
+        <div v-for="(item, index) in mustSee" :key="item.index">
+          <H4
+            >{{ index + 1 }},<el-button type="success" link>{{
+              item.title
+            }}</el-button>
+            {{ item.text }}
+          </H4>
+        </div>
+      </div>
+      <div class="marginTopMainStyle">
         <h3>关于我：</h3>
         <h4>Github:</h4>
         https://github.com/dengqizhang
@@ -42,6 +60,10 @@
       <div>
         <h4>简书:</h4>
         https://www.jianshu.com/u/b6fbcecdbe0e
+      </div>
+      <div>
+        <h4>邮箱:</h4>
+        2435563017@qq.com
       </div>
       <div>
         <div style="display: flex">
@@ -54,13 +76,43 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 /**
  * 主页个人简介
  */
 const mainText = ref(
   "内容包含SpringBoot，Java，JVM，SpringCloud，Docker等。我的项目经历以及网络杂谈，工具收集等。"
 );
+/**
+ * 项目更新计划
+ */
+const projectUpdate = ref([
+  {
+    title: "parameter-log-tool",
+    text: "SpringBoot日志参数记录工具插件,用于记录方法的入参出参值，并将日志打印到文档中。",
+  },
+  {
+    title: "cary-biogs",
+    text: "个人博客的前端地址，预计打造成一个动态前端，可配置化渲染页面。",
+  },
+  {
+    title: "KAP",
+    text: "面试题及知识点整理仓库。",
+  },
+]);
+/**
+ * 必看专栏
+ */
+const mustSee = ref([
+  {
+    title: "parameter-log-tool",
+    text: "SpringBoot日志参数记录工具插件,用于记录方法的入参出参值，并将日志打印到文档中。",
+  },
+]);
+
+onMounted(() => {
+  console.log(projectUpdate);
+});
 </script>
 
 <style scoped>
