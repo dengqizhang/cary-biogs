@@ -1,5 +1,28 @@
-# Vue 3 + TypeScript + Vite
+# cary-biogs
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 项目概述
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- 该项目用于个人博客的前端框架模板部分，用于生成一个动态的前端模板，基于 vue3+ts+vue-router+axios 等。
+
+## 使用说明
+
+拉取到本地后
+`npm install`
+
+运行
+`npm run dev`
+
+## 版本信息
+
+node 18.x
+vue3
+
+## 项目状态
+
+持续开发中
+
+## 联系信息
+
+2435563017@qq.com
+
+## 贡献者
