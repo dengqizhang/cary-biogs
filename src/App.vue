@@ -14,4 +14,7 @@ import heder from "./components/header/index.vue";
 
 
 <style scoped>
+.el-main {
+  --el-main-padding: 0px;
+}
 </style>

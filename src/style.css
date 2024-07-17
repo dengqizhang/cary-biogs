@@ -1,0 +1,15 @@
+.centerDiv {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  flex-direction: column;
+}
+.centerDivItem {
+  margin-top: 20px;
+  width: 60%;
+  justify-content: flex-start;
+  background-color: rgb(255, 255, 255);
+}
+.backgroundColorItem {
+  background-color: rgb(247, 247, 247);
+}

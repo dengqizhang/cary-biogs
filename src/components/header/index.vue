@@ -5,27 +5,23 @@
     mode="horizontal"
     @select="handleSelect"
   >
-    <el-menu-item index="0">
-      <span>Cary的网络日志</span>
-    </el-menu-item>
+    <el-menu-item>Cary的网络日志</el-menu-item>
     <div class="flex-grow" />
-
-    <el-menu-item index="1">首页</el-menu-item>
-    <el-sub-menu index="2">
-      <template #title>项目经历</template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
-        <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
+    <template v-for="(item, index) in routerItemList" :key="item.id">
+      <el-menu-item v-if="!item.children" :index="item.url">
+        {{ item.name }}
+      </el-menu-item>
+      <el-sub-menu v-else :index="item.id">
+        <template #title>
+          <span>{{ item.name }}</span>
+        </template>
+        <template v-for="subItem in item.children" :key="subItem.id">
+          <el-menu-item :index="subItem.url" @click="subItemClick(subItem)">{{
+            subItem.name
+          }}</el-menu-item>
+        </template>
       </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="3">技术积累</el-menu-item>
-    <el-menu-item index="4">网络杂谈</el-menu-item>
-    <el-menu-item index="5">工具收集</el-menu-item>
+    </template>
   </el-menu>
 </template>
 
@@ -34,16 +30,64 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const activeIndex = ref("1");
+
+const routerItemList = ref([
+  {
+    id: "2",
+    name: "首页",
+    url: "/",
+    pid: "0",
+  },
+  {
+    id: "3",
+    name: "项目经历",
+    children: [
+      {
+        id: "10",
+        pid: "3",
+        name: "肉丁数联Saas平台",
+        url: "/roudingSaas",
+      },
+      {
+        pid: "3",
+        id: "11",
+        name: "个人博客",
+        url: "/caryBiogs",
+      },
+    ],
+    pid: "0",
+  },
+  {
+    id: "4",
+    name: "技术积累",
+    url: "/technology",
+    pid: "0",
+  },
+  {
+    id: "5",
+    name: "网络杂谈",
+    url: "/tittleTattle",
+    pid: "0",
+  },
+  {
+    id: "5",
+    name: "工具收集",
+    url: "/tool",
+    pid: "0",
+  },
+]);
 /**
  * 根据导航传入的标识符导航到不同路由地址
  */
 const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-  if (key == "1") {
-    router.push("/");
-  } else if (key == "3") {
-    router.push("/technology");
-  }
+  router.push({ path: `${key}` });
+};
+/**
+ * 传递菜单对象
+ */
+const subItemClick = (val: any) => {
+  console.log(val);
+  router.push({ path: `${val.url}`, query: { id: val.id } });
 };
 </script>
 
