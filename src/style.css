@@ -13,3 +13,8 @@
 .backgroundColorItem {
   background-color: rgb(247, 247, 247);
 }
+
+.ptextStyle {
+  text-indent: 3em;
+  line-height: 2.5em;
+}

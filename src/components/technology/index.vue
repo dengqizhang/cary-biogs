@@ -9,7 +9,8 @@
         @node-click="handleNodeClick"
     /></el-aside>
     <el-main
-      ><div><router-view></router-view></div
+      ><div style="overflow-y: scroll; height: 100vh">
+        <router-view></router-view></div
     ></el-main>
   </el-container>
 </template>
@@ -73,4 +74,12 @@ onMounted(() => {
   router.push({ path: "/article", query: { id: 1 } });
 });
 </script>
+
+<style>
+/* 确保其他部分不滚动 */
+el-container,
+el-aside {
+  overflow: hidden;
+}
+</style>
   

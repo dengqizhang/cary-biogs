@@ -52,17 +52,11 @@
             <p style="text-indent: 3em; line-height: 2.5em">
               {{ form.pjParticipationText }}
             </p>
-            <div style="display: flex">
-              <div
-                ref="myChart"
-                id="myChart"
-                :style="{ width: '50%', height: '400px' }"
-              ></div>
-              <div
-                ref="myChart1"
-                id="myChart1"
-                :style="{ width: '50%', height: '400px' }"
-              ></div>
+            <div
+              v-for="(item, index) in form.pjParticipationImages"
+              :key="index"
+            >
+              <img :src="item.image" width="100%" />
             </div>
           </div>
           <div>
@@ -90,11 +84,6 @@
 import { getCurrentInstance, onMounted, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
-// 通过 internalInstance.appContext.config.globalProperties 获取全局属性或方法
-let internalInstance = getCurrentInstance();
-let echarts = internalInstance.appContext.config.globalProperties.$echarts;
-let echarts1 = internalInstance.appContext.config.globalProperties.$echarts;
-
 const form = ref({
   title: "肉丁数联Saas平台",
   descuser: "Cary",
@@ -137,123 +126,19 @@ const form = ref({
   ],
   codeRepositories: "xxxx",
   pjParticipationText: "在项目中的开发占比及所用技术占比。",
+  pjParticipationImages: [
+    {
+      image:
+        "https://th.bing.com/th/id/R.9de53f9726576696b318a8d95c0946cb?rik=sWB3V9KSxHbThw&riu=http%3a%2f%2fpic.bizhi360.com%2fbbpic%2f95%2f9995_1.jpg&ehk=GcPUjJED69TBvg9XxQr2klzDzfRsQWhAfLKlIAUWHJQ%3d&risl=&pid=ImgRaw&r=0",
+    },
+  ],
 });
 watchEffect(() => {
   let menuId = route.query.id;
   console.log(menuId);
   //根据菜单id获取对应的配置
 });
-onMounted(() => {
-  const dom = document.getElementById("myChart");
-  const dom1 = document.getElementById("myChart1");
-  const myChart = echarts.init(dom); // 初始化echarts实例
-  const myChart1 = echarts1.init(dom1); // 初始化echarts实例
-  const option = {
-    title: {
-      text: "项目模块参与占比%",
-      left: "center",
-    },
-    tooltip: {
-      trigger: "item",
-    },
-    legend: {
-      top: "4%",
-      left: "center",
-    },
-    series: [
-      {
-        name: "项目模块参与占比",
-        type: "pie",
-        radius: ["40%", "70%"],
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: "#fff",
-          borderWidth: 2,
-        },
-        label: {
-          show: false,
-          position: "center",
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: 40,
-            fontWeight: "bold",
-          },
-        },
-        labelLine: {
-          show: false,
-        },
-        data: [
-          { value: 100, name: "预警人员模块" },
-          { value: 100, name: "材料模块" },
-          { value: 100, name: "混合料模块" },
-          { value: 100, name: "设备模块" },
-          { value: 100, name: "预警信息模块" },
-          { value: 100, name: "预警人员模块" },
-          { value: 100, name: "生产配合比模块" },
-          { value: 100, name: "生产任务模块" },
-          { value: 100, name: "生产数据模块" },
-        ],
-      },
-    ],
-  };
-  const option1 = {
-    title: {
-      text: "项目开发所用技术%",
-      left: "center",
-    },
-    tooltip: {
-      trigger: "item",
-    },
-    legend: {
-      top: "5%",
-      left: "center",
-    },
-    series: [
-      {
-        name: "Access From",
-        type: "pie",
-        radius: ["40%", "70%"],
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: "#fff",
-          borderWidth: 2,
-        },
-        label: {
-          show: false,
-          position: "center",
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: 40,
-            fontWeight: "bold",
-          },
-        },
-        labelLine: {
-          show: false,
-        },
-        data: [
-          { value: 30, name: "SpringBoot" },
-          { value: 5, name: "Redis" },
-          { value: 10, name: "Git" },
-          { value: 10, name: "Mysql" },
-          { value: 10, name: "MyBatis" },
-          { value: 10, name: "SpringMvc" },
-          { value: 10, name: "Vue3技术栈" },
-          { value: 5, name: "Websocket" },
-        ],
-      },
-    ],
-  };
-  // 设置实例参数
-  myChart.setOption(option);
-  // 设置实例参数
-  myChart1.setOption(option1);
-});
+onMounted(() => {});
 </script>
 
 <style>
