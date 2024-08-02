@@ -4,29 +4,20 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import main from "../components/main/index.vue";
-import projectExperience from "../components/rouding/index.vue";
-import technology from "../components/technology/index.vue";
-import article from "../components/technology/article/index.vue";
+import mdindex from "../components/md/index.vue";
+import md from "../components/md/md.vue";
 const routes = [
   {
     path: "/",
     component: main,
   },
   {
-    path: "/caryBiogs",
-    component: projectExperience,
-  },
-  {
-    path: "/roudingSaas",
-    component: projectExperience,
-  },
-  {
-    path: "/technology",
-    component: technology,
+    path: "/:name",
+    component: mdindex,
     children: [
       {
-        path: "/article",
-        component: article,
+        path: "/:name",
+        component: md,
       },
     ],
   },

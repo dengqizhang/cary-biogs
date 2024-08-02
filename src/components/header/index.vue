@@ -70,7 +70,7 @@ const routerItemList = ref([
     pid: "0",
   },
   {
-    id: "5",
+    id: "6",
     name: "工具收集",
     url: "/tool",
     pid: "0",
