@@ -32,8 +32,8 @@
     >
       <div>
         <h3>更新计划:</h3>
-        <div v-for="(item, index) in from.projectUpdate" :key="item.index">
-          <H4
+        <div v-for="(item, index) in from.projectList" :key="item.index">
+          <H4 v-if="item.projectType == 1"
             >{{ index + 1 }},<el-button type="success" link>{{
               item.title
             }}</el-button>
@@ -43,8 +43,8 @@
       </div>
       <div>
         <h3>必看专栏:</h3>
-        <div v-for="(item, index) in from.mustSee" :key="item.index">
-          <H4
+        <div v-for="(item, index) in from.projectList" :key="item.index">
+          <H4 v-if="item.projectType == 2"
             >{{ index + 1 }},<el-button type="success" link>{{
               item.title
             }}</el-button>
@@ -73,45 +73,20 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-
-const from = ref({
-  /**
-   * 主页个人简介
-   */
-  mainText:
-    "内容包含SpringBoot，Java，JVM，SpringCloud，Docker等。我的项目经历以及网络杂谈，工具收集等。",
-  /**
-   * 项目更新计划
-   */
-  projectUpdate: [
-    {
-      title: "parameter-log-tool",
-      text: "SpringBoot日志参数记录工具插件,用于记录方法的入参出参值，并将日志打印到文档中。",
-    },
-    {
-      title: "cary-biogs",
-      text: "个人博客的前端地址，预计打造成一个动态前端，可配置化渲染页面。",
-    },
-    {
-      title: "KAP",
-      text: "面试题及知识点整理仓库。",
-    },
-  ],
-  /**
-   * 必看专栏
-   */
-  mustSee: [
-    {
-      title: "parameter-log-tool",
-      text: "SpringBoot日志参数记录工具插件,用于记录方法的入参出参值，并将日志打印到文档中。",
-    },
-  ],
-  github: "https://github.com/dengqizhang",
-  email: "2435563017@qq.com",
-  wechat:
-    "https://th.bing.com/th/id/R.6b5df1bfe0e4778a44dba0753cd169c8?rik=QRQIMqvjWRCO5Q&riu=http%3a%2f%2fpic39.nipic.com%2f20140321%2f8857347_232251363165_2.jpg&ehk=7oAaMo6LCHJc%2bqpQ0IPvcH7v69jGRQhb2vDz%2fOd5720%3d&risl=&pid=ImgRaw&r=0",
+import { getHome } from "../../api/home/index.ts";
+//页面数据对象
+const from = ref({});
+/**
+ * 获取首页数据
+ */
+const getHomeChange = async () => {
+  const res = await getHome();
+  console.log(res);
+  from.value = res;
+};
+onMounted(() => {
+  getHomeChange();
 });
-onMounted(() => {});
 </script>
 
 <style scoped>
