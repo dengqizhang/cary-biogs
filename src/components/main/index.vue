@@ -74,6 +74,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { getHome } from "../../api/home/index.ts";
+
 //页面数据对象
 const from = ref({});
 /**
@@ -84,8 +85,11 @@ const getHomeChange = async () => {
   console.log(res);
   from.value = res;
 };
+
+
 onMounted(() => {
   getHomeChange();
+
 });
 </script>
 

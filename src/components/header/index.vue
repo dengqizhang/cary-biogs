@@ -25,56 +25,22 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { getNavItem } from "../../api/navitem/index.ts";
 const router = useRouter();
 const activeIndex = ref("1");
 
-const routerItemList = ref([
-  {
-    id: "2",
-    name: "首页",
-    url: "/",
-    pid: "",
-  },
-  {
-    id: "3",
-    name: "项目经历",
-    children: [
-      {
-        id: "10",
-        pid: "3",
-        name: "肉丁数联Saas平台",
-        url: "/roudingSaas",
-      },
-      {
-        pid: "3",
-        id: "11",
-        name: "个人博客",
-        url: "/caryBiogs",
-      },
-    ],
-    pid: "",
-  },
-  {
-    id: "4",
-    name: "技术积累",
-    url: "/technology",
-    pid: "",
-  },
-  {
-    id: "5",
-    name: "网络杂谈",
-    url: "/tittleTattle",
-    pid: "",
-  },
-  {
-    id: "6",
-    name: "工具收集",
-    url: "/tool",
-    pid: "",
-  },
-]);
+const routerItemList = ref([]);
+
+/**
+ * 获取导航项
+ */
+const getNavItemChange = async () => {
+  const res = await getNavItem();
+  routerItemList.value = res;
+  console.log(res);
+};
 /**
  * 根据导航传入的标识符导航到不同路由地址
  */
@@ -90,6 +56,9 @@ const subItemClick = (val: any) => {
   console.log(val);
   router.push({ path: `${val.url}`, query: { id: val.id } });
 };
+onMounted(() => {
+  getNavItemChange();
+});
 </script>
 
 
