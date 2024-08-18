@@ -18,7 +18,7 @@
     </el-container>
   </div>
 </template>
-<script lang="ts" setup>
+  <script lang="ts" setup>
 import { getArticleCategory } from "../../api/articlecategory/index.ts";
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -55,9 +55,8 @@ const getfetch = async (navitemId: any, type: any) => {
   // 调用函数进行转换
   convertNamesToLabels(res);
 
-
-    data.value = res;
-    mainId.value = res[0].children[0].categoryId;
+  data.value = res;
+  mainId.value = res[0].children[0].categoryId;
 };
 // 定义递归函数来处理深层次的数据结构
 const convertNamesToLabels = (data: any) => {
@@ -72,13 +71,13 @@ const convertNamesToLabels = (data: any) => {
   }
 };
 onMounted(() => {
-    getfetch(route.query.id, route.query.type);
+  getfetch(route.query.id, route.query.type);
   watch(
     () => route.query,
     (newQuery) => {
-        getfetch(newQuery.id, newQuery.type);
+      getfetch(newQuery.id, newQuery.type);
     }
   );
 });
 </script>
-  
+    

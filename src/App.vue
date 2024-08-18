@@ -7,7 +7,7 @@ import heder from "./components/header/index.vue";
     <el-container>
       <el-header> <heder /></el-header>
       <el-main><RouterView /></el-main>
-      <el-footer>Footer</el-footer>
+      <!-- <el-footer>Footer</el-footer> -->
     </el-container>
   </div>
 </template>

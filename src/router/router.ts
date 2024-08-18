@@ -4,7 +4,7 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import main from "../components/main/index.vue";
-import mdindex from "../components/md/index.vue";
+import articleCategory from "../components/articleCategory/index.vue";
 import md from "../components/md/md.vue";
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: "/:name",
-    component: mdindex,
+    component: articleCategory,
     children: [
       {
         path: "/:name",
