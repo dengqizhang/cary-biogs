@@ -52,10 +52,16 @@ const getfetch = async (navitemId: any) => {
   // 调用函数进行转换
   convertNamesToLabels(res);
   data.value = res;
-  //设置树状组件默认节点
-  defaultNode.value = res[0].children[0].id;
-  //设置默认渲染文章
-  mainId.value = res[0].children[0].categoryId;
+
+  if (res[0].children === null) {
+    //设置默认渲染文章
+    mainId.value = res[0].categoryId;
+  } else {
+    //设置树状组件默认节点
+    defaultNode.value = res[0].children[0].id;
+    //设置默认渲染文章
+    mainId.value = res[0].children[0].categoryId;
+  }
 };
 /**树状组件节点点击事件 */
 const handleNodeClick = async (data: Tree) => {
