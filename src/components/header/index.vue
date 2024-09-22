@@ -2,59 +2,30 @@
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
     <el-menu-item>Cary的网络日志</el-menu-item>
     <div class="flex-grow" />
-    <template v-for="(item, index) in routerItemList" :key="item.id">
-      <el-menu-item
-        v-if="!item.children"
-        :index="item.url"
-        @click="handleSelect(item, 0)"
-      >
+    <template v-for="item in headerNavData" :key="item.id">
+      <el-menu-item :index="item.url" @click="handleSelect(item)">
         {{ item.name }}
       </el-menu-item>
-      <el-sub-menu v-else :index="item.id">
-        <template #title>
-          <span>{{ item.name }}</span>
-        </template>
-        <template v-for="subItem in item.children" :key="subItem.id">
-          <el-menu-item
-            :index="subItem.url"
-            @click="handleSelect(subItem, 1)"
-            >{{ subItem.name }}</el-menu-item
-          >
-        </template>
-      </el-sub-menu>
     </template>
   </el-menu>
 </template>
-
-
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { getNavItem } from "../../api/navitem/index.ts";
+import { headerNavData } from "../../localData/heder/index";
+import { headerNav } from "../../localData/heder/types";
 const router = useRouter();
 const activeIndex = ref("1");
-
-const routerItemList: any = ref([]);
-
-/**
- * 获取导航项
- */
-const getNavItemChange = async () => {
-  const res = await getNavItem();
-  routerItemList.value = res;
-  console.log(res);
-};
 /**
  * 根据导航传入的标识符导航到不同路由地址并传递参数
  * @param val 当前路由对象
  * @param type 当前菜单项是否有二级菜单
  */
-const handleSelect = (val: any, type: any) => {
-  console.log(val);
-  router.push({ path: `${val.url}`, query: { id: val.id, type: type } });
+const handleSelect = (val: headerNav) => {
+  router.push({ path: `${val.url}`, query: { id: val.id} });
 };
 onMounted(() => {
-  getNavItemChange();
+  console.log(headerNavData);
 });
 </script>
 <style>
