@@ -14,6 +14,17 @@
 
 可查看到测试数据，如果想替换自己的数据，可直接更改`src\localData`的本地数据。
 
+例如：新加文章，就需要在`src\localData\article\index.ts`文件中的 articleData 数组中，新加对象。
+
+格式为 `src\localData\article\types.ts` 的要求，navId 为：
+
+- 2： 项目经历
+- 3： 技术积累
+- 4： 网络杂谈
+- 5： 工具收集
+
+则匹配到对应导航项的文章
+
 ## 版本信息
 
 node 18.x

@@ -1,5 +1,7 @@
 <template>
-  <div v-html="mainData"></div>
+  <div id="leafContainer" style="height: 75vh">
+    <div v-html="mainData"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -24,7 +26,7 @@ const getfetch = (id: number | string) => {
 onMounted(() => {});
 watch(
   () => props.mainId,
-  (newId, oldId) => {
+  (newId) => {
     if (newId) {
       getfetch(newId);
     }
@@ -32,4 +34,3 @@ watch(
   { immediate: true }
 );
 </script>
-

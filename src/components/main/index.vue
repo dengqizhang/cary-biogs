@@ -102,7 +102,6 @@
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { blogsHomeData } from "../../localData/main/index";
-import { blogsHome } from "../../localData/main/types";
 import { headerNavData } from "../../localData/heder";
 const router = useRouter();
 

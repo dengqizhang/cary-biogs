@@ -54,7 +54,7 @@ const handleNodeClick = (val: articleTree) => {
 onMounted(() => {});
 watch(
   () => route.query.id,
-  (newValue, oldValue) => {
+  (newValue) => {
     //接受路由传参
     paramId.value = newValue || "";
     getdata();
